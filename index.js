@@ -5,6 +5,7 @@ const router = require('koa-router')()
 const koaBody = require('koa-bodyparser')
 const compress = require('koa-compress')
 const logger = require('koa-logger')
+const cors = require('@koa/cors')
 
 const routes = require('./routes')
 const { PORT } = process.env
@@ -13,6 +14,7 @@ const app = new Koa()
 
 app.use(logger())
 app.use(koaBody())
+app.use(cors())
 
 app.use(function(ctx, next) {
     ctx.body = ctx.request.body
